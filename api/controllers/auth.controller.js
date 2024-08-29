@@ -4,7 +4,7 @@ import bcryptjs from 'bcryptjs';
 
 
 // Define an asynchronous function 'signup' to handle user registration.
-export const signup = async (req, res) => {
+export const signup = async (req, res,next) => {
 
     // Extract 'username', 'email', and 'password' from the request body.
     const { username, email, password } = req.body;
@@ -19,7 +19,7 @@ try{
  // Send a 201 status response indicating successful creation, along with a message.
  res.status(201).json({ message: 'User created successfully' });
 }catch(error){
-    res.status(500).json(error.message);
+    next(error);
 }
    
 };
